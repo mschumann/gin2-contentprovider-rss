@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.sf.iqser.plugin.rss</groupId>
+	<artifactId>sf-rss-plugin</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>sf-rss-plugin</name>
+	<description>The goal of this project is to provide a ContentProvider plugin for RSS feeds for iQser GIN Semantic Middleware (www.iqser.com).</description>
+	<url>http://www.iqser.com</url>
+
+	<properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<compileSource>1.5</compileSource>
+	</properties>
+	
+	<organization>
+		<name>iQser GmbH</name>
+		<url>http://www.iqser.com</url>
+	</organization>
+	
+	<repositories>
+		<repository>
+			<id>iqser_release</id>
+			<name>Nexus Mirror</name>
+			<url>http://nexus.iqser.com/nexus/content/groups/repo</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>iqser_release</id>
+			<url>http://nexus.iqser.com/nexus/content/groups/repo</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+  		<dependency>
+			<groupId>com.iqser.core</groupId>
+			<artifactId>iqser-core-ejb3</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.iqser.core</groupId>
+			<artifactId>iqser-test-api</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jperdian</groupId>
+			<artifactId>rss2</artifactId>
+			<version>2.1</version>
+			<type>jar</type>
+		</dependency>
+    	<dependency>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+      		<version>3.8.1</version>
+      		<scope>test</scope>
+    	</dependency>
+	</dependencies>
+</project>
