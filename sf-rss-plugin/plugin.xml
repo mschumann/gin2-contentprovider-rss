@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iqser>
+	<plugin>
+		<id>sf.net.iqser.plugin.rss</id>
+		<type>RSS Feed</type>
+		<name>RSS Content Provider</name>
+		<vendor>IQser GmbH</vendor>
+		<provider-class>sf.net.iqser.plugin.rss.RSSContentProvider</provider-class>
+		<scheduler>
+			<syncjob>0 0 * * * ?</syncjob>
+			<housekeeperjob>0 0 23 * * ?</housekeeperjob>
+		</scheduler>
+		<init-param>
+			<param-name>url</param-name>
+			<param-value><!-- Any url of the RSS Feed --></param-value>
+		</init-param>
+	</plugin>
+</iqser>
