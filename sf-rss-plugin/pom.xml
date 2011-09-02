@@ -319,4 +319,27 @@
       		<scope>test</scope>
     	</dependency>
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>iqserrssplugin-repo</id>
+			<name>iQser RSS Plugin Repository</name>
+			<url>
+				sftp://web.sourceforge.net/home/project-web/iqserrssplugin/htdocs/maven2
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>iqserrssplugin-repo-snap</id>
+			<name>iQser RSS Plugin Snapshot-Repository</name>
+			<url>
+				sftp://web.sourceforge.net/home/project-web/iqserrssplugin/htdocs/maven2-snap
+			</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+		<site>
+			<id>iqserrssplugin.sourceforge.net</id>
+			<name>iQser RSS Plugin</name>
+			<url>sftp://web.sourceforge.net/home/project-web/iqserrssplugin/htdocs
+			</url>
+		</site>
+	</distributionManagement>
 </project>
