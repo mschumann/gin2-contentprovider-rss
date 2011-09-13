@@ -124,7 +124,11 @@ public class RSSContentProvider extends AbstractContentProvider {
 						Iterator catIter = rssItem.getCategoryList().iterator();
 						
 						while (catIter.hasNext()) {
-							c.addAttribute(new Attribute("Category", (String)iter.next(), Attribute.ATTRIBUTE_TYPE_TEXT, true)); 
+							Object o = catIter.next();
+							
+							if (o.getClass().isInstance(String.class)) {
+								c.addAttribute(new Attribute("Category", (String)o, Attribute.ATTRIBUTE_TYPE_TEXT, true)); 
+							}
 						}
 					}
 					
