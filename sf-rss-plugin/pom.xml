@@ -258,23 +258,23 @@
 		<repository>
 			<id>iqserrssplugin-repo</id>
 			<name>iQser RSS Plugin Repository</name>
-			<url>http://iqserrssplugin.sourceforge.net/maven2-snap</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>iqserrssplugin-repo</id>
-			<name>iQser RSS Plugin Repository</name>
 			<url>http://iqserrssplugin.sourceforge.net/maven2</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
 			<snapshots>
 				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>iqserrssplugin-repo-snap</id>
+			<name>iQser RSS Plugin Snapshot Repository</name>
+			<url>http://iqserrssplugin.sourceforge.net/maven2-snap</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 		<repository>  
