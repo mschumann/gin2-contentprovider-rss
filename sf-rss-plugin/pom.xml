@@ -298,13 +298,24 @@
 	<dependencies>
   		<dependency>
 			<groupId>com.iqser.core</groupId>
-			<artifactId>iqser-core-ejb3</artifactId>
-			<version>1.5</version>
+			<artifactId>iqser-core-api</artifactId>
+			<version>${iqser.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.iqser.core</groupId>
+			<artifactId>iqser-core-plugin</artifactId>
+			<version>${iqser.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.iqser.core</groupId>
 			<artifactId>iqser-test-api</artifactId>
-			<version>1.5</version>
+			<version>${iqser.version}</version>
+			<type>jar</type>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jperdian</groupId>
