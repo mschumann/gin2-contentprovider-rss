@@ -27,15 +27,15 @@ public class YoutubeRSSContentProviderTest extends TestCase {
 				
 		provider = new RSSContentProvider();
 		
-		provider.setId("com.iqser.training.rss.youtube");
-		provider.setType("Youtube Video");
+		provider.setName("com.iqser.training.rss.youtube");
 		
 		Properties props = new Properties();
 		props.setProperty("url", "http://gdata.youtube.com/feeds/base/users/MorganMcKinley01/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile");
-		
+		props.setProperty("type", "Youtube Video");
 		provider.setInitParams(props);
 		
 		super.setUp();
+		provider.init();
 	}
 
 	protected void tearDown() throws Exception {
@@ -77,7 +77,7 @@ public class YoutubeRSSContentProviderTest extends TestCase {
 		
 		String contentUrl = "tag:youtube.com,2008:video:wC79vQWhAHg";
 		
-		Content c = provider.getContent(contentUrl);
+		Content c = provider.createContent(contentUrl);
 		
 		assertEquals("Youtube Video", c.getType());
 		assertEquals("com.iqser.training.rss.youtube", c.getProvider());

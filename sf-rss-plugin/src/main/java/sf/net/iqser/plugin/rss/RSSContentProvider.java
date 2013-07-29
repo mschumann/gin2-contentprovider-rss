@@ -6,26 +6,39 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.jperdian.rss2.RssClient;
 import org.jperdian.rss2.RssException;
 import org.jperdian.rss2.dom.RssChannel;
 import org.jperdian.rss2.dom.RssItem;
 
-import com.iqser.core.event.Event;
 import com.iqser.core.exception.IQserException;
+import com.iqser.core.exception.IQserRuntimeException;
 import com.iqser.core.model.Attribute;
 import com.iqser.core.model.Content;
-import com.iqser.core.plugin.AbstractContentProvider;
+import com.iqser.core.model.Parameter;
+import com.iqser.core.plugin.provider.AbstractContentProvider;
 
 public class RSSContentProvider extends AbstractContentProvider {
 
-	private static final long serialVersionUID = -8501324407012711496L;
 	private static Logger logger = Logger.getLogger( RSSContentProvider.class );
 
+	private String type;
+	private String url;
+	
 	@Override
 	public void init() {
 		
+		this.type = getInitParams().getProperty("type");
+		if(StringUtils.isEmpty(type)){
+			throw new IQserRuntimeException("Empty content type");
+		}
+
+		this.url = getInitParams().getProperty("url");
+		if(StringUtils.isEmpty(url)){
+			throw new IQserRuntimeException("Empty url");
+		}
 	}
 
 	@Override
@@ -34,10 +47,10 @@ public class RSSContentProvider extends AbstractContentProvider {
 	}
 
 	@Override
-	public void doSynchonization() {	
+	public void doSynchronization() {	
 	
 		try {
-			URL url = new URL(getInitParams().getProperty("url"));
+			URL url = new URL(this.url);
 
 			RssClient rssClient = new RssClient(url);
 			RssChannel rssChannel = rssClient.getData();
@@ -49,7 +62,7 @@ public class RSSContentProvider extends AbstractContentProvider {
 				String contentUrl = rssItem.getGuid().getGuid();
 				
 				if (!isExistingContent(contentUrl)) {
-					addContent(getContent(contentUrl));
+					addContent(createContent(contentUrl));
 				}
 			}
 		} catch (MalformedURLException e) {
@@ -66,23 +79,18 @@ public class RSSContentProvider extends AbstractContentProvider {
 		// Do nothing. Delete repository manually instead.
 	}
 
-	@Override
-	public Collection<String> getContentUrls()
-	{
-		return null;
-	}
 
 	@Override
-	public Content getContent(String contentUrl) 
+	public Content createContent(String contentUrl) 
 	{
 		Content c = new Content();
 		
-		c.setProvider(getId());
+		c.setProvider(getName());
 		c.setContentUrl(contentUrl);
-		c.setType(getType());
+		c.setType(type);
 		
 		try {
-			URL url = new URL(getInitParams().getProperty("url"));
+			URL url = new URL(this.url);
 
 			RssClient rssClient = new RssClient(url);
 			RssChannel rssChannel = rssClient.getData();
@@ -155,18 +163,17 @@ public class RSSContentProvider extends AbstractContentProvider {
 		return null;
 	}
 
-	@Override
-	public void performAction(String arg0, Content arg1) {
-		
-	}
 
 	@Override
-	public Content getContent(InputStream arg0) {
+	public Content createContent(InputStream arg0) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
+
 	@Override
-	public void onChangeEvent(Event arg0) {
+	public void performAction(String arg0, Collection<Parameter> arg1, Content arg2) {
+		// TODO Auto-generated method stub
 		
 	}
 }

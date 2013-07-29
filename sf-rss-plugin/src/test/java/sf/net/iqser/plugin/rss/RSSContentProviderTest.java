@@ -19,23 +19,26 @@ import junit.framework.TestCase;
 
 public class RSSContentProviderTest extends TestCase {
 
+	private static final String CONTENT_TYPE = "Twitter Status Update";
+
 	private RSSContentProvider provider = null;
-	
-	private static Logger logger = Logger.getLogger( RSSContentProviderTest.class );
+
+	private static Logger logger = Logger.getLogger(RSSContentProviderTest.class);
 
 	protected void setUp() throws Exception {
-				
+
 		provider = new RSSContentProvider();
-		
-		provider.setId("com.iqser.training.rss.twitter");
-		provider.setType("Twitter Status Update");
-		
+
+		provider.setName("com.iqser.training.rss.twitter");
+
 		Properties props = new Properties();
-		props.setProperty("url", "http://twitter.com/statuses/user_timeline/jwurzer.rss");
-		
+		props.setProperty("url", "index.rss");
+		props.setProperty("type", CONTENT_TYPE);
+
 		provider.setInitParams(props);
-		
+
 		super.setUp();
+		provider.init();
 	}
 
 	protected void tearDown() throws Exception {
@@ -43,30 +46,30 @@ public class RSSContentProviderTest extends TestCase {
 	}
 
 	public void testDoSynchonization() {
-		
+
 		// Just a quick test of the RSS framework
-		
+
 		try {
 			URL url = new URL(provider.getInitParams().getProperty("url"));
 
 			RssClient rssClient = new RssClient(url);
 			RssChannel rssChannel = rssClient.getData();
-			
+
 			Iterator iter = rssChannel.getItemList().iterator();
-			
+
 			while (iter.hasNext()) {
 				RssItem rssItem = (RssItem) iter.next();
 				String contentUrl = rssItem.getGuid().getGuid();
-				
+
 				assertNotNull(contentUrl);
-				
+
 				logger.debug("Fetched url: " + contentUrl);
 			}
 		} catch (MalformedURLException e) {
 			logger.error("Couldn't create url: " + e.getLocalizedMessage());
 		} catch (RssException e) {
 			logger.error("Couldn't parse rss: " + e.getLocalizedMessage());
-		} 
+		}
 	}
 
 	public void testDoHousekeeping() {
@@ -74,28 +77,28 @@ public class RSSContentProviderTest extends TestCase {
 	}
 
 	public void testGetContentString() {
-		
-		String contentUrl = "http://twitter.com/jwurzer/statuses/63223611695185920";
-		
-		Content c = provider.getContent(contentUrl);
-		
-		assertEquals("Twitter Status Update", c.getType());
+
+		String contentUrl = "file://index.rss";
+
+		Content c = provider.createContent(contentUrl);
+
+		assertEquals(CONTENT_TYPE, c.getType());
 		assertEquals("com.iqser.training.rss.twitter", c.getProvider());
 		assertNotNull(c.getFulltext());
-		
+
 		logger.debug("Fulltext: " + c.getFulltext());
-		
+
 		assertTrue(c.getModificationDate() < System.currentTimeMillis());
-		
+
 		Collection col = c.getAttributes();
-		
+
 		assertTrue(col.size() > 0);
-		
+
 		Iterator iter = col.iterator();
-		
+
 		while (iter.hasNext()) {
-			Attribute a = (Attribute)iter.next();
-			
+			Attribute a = (Attribute) iter.next();
+
 			logger.debug(a.getName() + ": " + a.getValue());
 		}
 	}
