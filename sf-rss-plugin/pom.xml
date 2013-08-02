@@ -409,7 +409,7 @@
 						<failsOnError>true</failsOnError>
 					</configuration>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -524,25 +524,25 @@
 			</snapshots>
 		</repository>
 		<repository>
-			<id>iqserrssplugin-repo</id>
+			<id>iqserrssplugin-repo-snapshot</id>
 			<name>iQser RSS Plugin Repository</name>
-			<url>http://iqserrssplugin.sourceforge.net/maven2</url>
+			<url>http://${project.artifactId}.sourceforge.net/maven2-snap</url>
 			<releases>
-				<enabled>true</enabled>
+				<enabled>false</enabled>
 			</releases>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 		<repository>
-			<id>iqserrssplugin-repo-snap</id>
-			<name>iQser RSS Plugin Snapshot Repository</name>
-			<url>http://iqserrssplugin.sourceforge.net/maven2-snap</url>
+			<id>iqserrssplugin-repo</id>
+			<name>iQser RSS Plugin Repository</name>
+			<url>http://${project.artifactId}.sourceforge.net/maven2</url>
 			<releases>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</releases>
 			<snapshots>
-				<enabled>true</enabled>
+				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 		<repository>
