@@ -1,5 +1,6 @@
 package sf.net.iqser.plugin.rss;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
@@ -32,7 +33,7 @@ public class RSSContentProviderTest extends TestCase {
 		provider.setName("com.iqser.training.rss.twitter");
 
 		Properties props = new Properties();
-		props.setProperty("url", "index.rss");
+		props.setProperty("url", new File(provider.getInitParams().getProperty("/src/test/url")).toURI().toURL().toString());
 		props.setProperty("type", CONTENT_TYPE);
 
 		provider.setInitParams(props);
@@ -51,14 +52,14 @@ public class RSSContentProviderTest extends TestCase {
 
 		try {
 			URL url = new URL(provider.getInitParams().getProperty("url"));
-
+			
 			RssClient rssClient = new RssClient(url);
 			RssChannel rssChannel = rssClient.getData();
 
-			Iterator iter = rssChannel.getItemList().iterator();
+			Iterator<RssItem> iter = rssChannel.getItemList().iterator();
 
 			while (iter.hasNext()) {
-				RssItem rssItem = (RssItem) iter.next();
+				RssItem rssItem = iter.next();
 				String contentUrl = rssItem.getGuid().getGuid();
 
 				assertNotNull(contentUrl);
@@ -78,7 +79,7 @@ public class RSSContentProviderTest extends TestCase {
 
 	public void testGetContentString() {
 
-		String contentUrl = "file://index.rss";
+		String contentUrl = System.getProperty("user.dir") + "/src/test/index.rss";
 
 		Content c = provider.createContent(contentUrl);
 
@@ -90,14 +91,14 @@ public class RSSContentProviderTest extends TestCase {
 
 		assertTrue(c.getModificationDate() < System.currentTimeMillis());
 
-		Collection col = c.getAttributes();
+		Collection<Attribute> col = c.getAttributes();
 
 		assertTrue(col.size() > 0);
 
-		Iterator iter = col.iterator();
+		Iterator<Attribute> iter = col.iterator();
 
 		while (iter.hasNext()) {
-			Attribute a = (Attribute) iter.next();
+			Attribute a = iter.next();
 
 			logger.debug(a.getName() + ": " + a.getValue());
 		}
