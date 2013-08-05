@@ -56,7 +56,7 @@ public class RSSContentProviderTest extends TestCase {
 			RssClient rssClient = new RssClient(url);
 			RssChannel rssChannel = rssClient.getData();
 
-			Iterator<RssItem> iter = rssChannel.getItemList().iterator();
+			Iterator<RssItem> iter = (Iterator<RssItem>) rssChannel.getItemList().iterator();
 
 			while (iter.hasNext()) {
 				RssItem rssItem = iter.next();

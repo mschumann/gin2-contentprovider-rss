@@ -52,7 +52,7 @@ public class YoutubeRSSContentProviderTest extends TestCase {
 			RssClient rssClient = new RssClient(url);
 			RssChannel rssChannel = rssClient.getData();
 			
-			Iterator iter = rssChannel.getItemList().iterator();
+			Iterator<?> iter = rssChannel.getItemList().iterator();
 			
 			while (iter.hasNext()) {
 				RssItem rssItem = (RssItem) iter.next();
@@ -87,11 +87,11 @@ public class YoutubeRSSContentProviderTest extends TestCase {
 		
 		assertTrue(c.getModificationDate() < System.currentTimeMillis());
 		
-		Collection col = c.getAttributes();
+		Collection<Attribute> col = c.getAttributes();
 		
 		assertTrue(col.size() > 0);
 		
-		Iterator iter = col.iterator();
+		Iterator<Attribute> iter = col.iterator();
 		
 		while (iter.hasNext()) {
 			Attribute a = (Attribute)iter.next();
