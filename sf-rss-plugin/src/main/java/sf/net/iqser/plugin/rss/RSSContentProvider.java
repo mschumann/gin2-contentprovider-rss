@@ -105,27 +105,27 @@ public class RSSContentProvider extends AbstractContentProvider {
 					c.setFulltext(rssItem.getDescription());
 					
 					if (rssItem.getAuthor() != null && rssItem.getAuthor().length() > 0) {
-						c.addAttribute(new Attribute("Author", rssItem.getAuthor(), Attribute.ATTRIBUTE_TYPE_TEXT, true));
+						c.addAttribute(new Attribute("AUTHOR", rssItem.getAuthor(), Attribute.ATTRIBUTE_TYPE_TEXT, true));
 					}
 					
 					if (rssItem.getTitle() != null && rssItem.getTitle().length() > 0) {
-						c.addAttribute(new Attribute("Title", rssItem.getTitle(), Attribute.ATTRIBUTE_TYPE_TEXT, true));
+						c.addAttribute(new Attribute("TITLE", rssItem.getTitle(), Attribute.ATTRIBUTE_TYPE_TEXT, true));
 					}
 					
 					if (rssItem.getComments() != null) {
-						c.addAttribute(new Attribute("Comment", rssItem.getComments().toString(), Attribute.ATTRIBUTE_TYPE_TEXT, false));
+						c.addAttribute(new Attribute("COMMENT", rssItem.getComments().toString(), Attribute.ATTRIBUTE_TYPE_TEXT, false));
 					}
 					
 					if (rssItem.getLink() != null) {
-						c.addAttribute(new Attribute("Link", rssItem.getLink().toString(), Attribute.ATTRIBUTE_TYPE_TEXT, true));
+						c.addAttribute(new Attribute("LINK", rssItem.getLink().toString(), Attribute.ATTRIBUTE_TYPE_TEXT, true));
 					}
 					
 					if (rssItem.getEnclosure() != null) {
-						c.addAttribute(new Attribute("Enclosure", rssItem.getEnclosure().toString(), Attribute.ATTRIBUTE_TYPE_TEXT, false));
+						c.addAttribute(new Attribute("ENCLOSURE", rssItem.getEnclosure().toString(), Attribute.ATTRIBUTE_TYPE_TEXT, false));
 					}
 					
 					if (rssItem.getSource() != null) {
-						c.addAttribute(new Attribute("Source", rssItem.getSource().getTitle(), Attribute.ATTRIBUTE_TYPE_TEXT, false));
+						c.addAttribute(new Attribute("SOURCE", rssItem.getSource().getTitle(), Attribute.ATTRIBUTE_TYPE_TEXT, false));
 					}
 					
 					if (rssItem.getCategoryList() != null) {
@@ -135,7 +135,7 @@ public class RSSContentProvider extends AbstractContentProvider {
 							Object o = catIter.next();
 							
 							if (o.getClass().isInstance(String.class)) {
-								c.addAttribute(new Attribute("Category", (String)o, Attribute.ATTRIBUTE_TYPE_TEXT, true)); 
+								c.addAttribute(new Attribute("CATEGORY", (String)o, Attribute.ATTRIBUTE_TYPE_TEXT, true)); 
 							}
 						}
 					}
