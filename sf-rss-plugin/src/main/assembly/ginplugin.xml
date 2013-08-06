@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ginplugin xmlns="http://www.iqser.com/schema/ginplugin/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iqser.com/schema/ginplugin/2.0 http://www.iqser.com/schema/ginplugin/2.0/ginplugin.xsd">
- 	<name>iQser RSS-Content-Provider</name>
+
+<ginplugin xsi:schemaLocation="http://www.iqser.com/schema/ginplugin/2.0/ginplugin.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.iqser.com/schema/ginplugin/2.0">
+
+	<!-- xsi:schemaLocation="http://www.iqser.com/schema/ginplugin/2.0 http://www.iqser.com/schema/ginplugin/2.0/ginplugin.xsd" -->
+
+	<name>iQser RSS-Content-Provider</name>
 	<vendor>iQser GmbH</vendor>
 	<version>###PROJECT_VERSION###</version>
 
-  <description>This content provider enables the integration of  remote RSS sources.</description>
-  
+	<description>
+		iQser RSS-Content-Provider
+	</description>
+
 	<classname type="ContentProvider">
 		<!-- full qualified class name -->
-		net.sf.iqser.plugin.rss.RSSContentProvider</classname>
+		sf.net.iqser.plugin.rss.RSSContentProvider</classname>
 
 	<params>
 		<param name="type" type="String" optional="false">content type</param>
